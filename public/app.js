@@ -27,17 +27,19 @@ class KanbanPage extends React.Component{
     console.error(error);
   }
 
-  loadDataFromKanban(){
+  loadDataFromKanban(apiUrl){
     const oReq = new XMLHttpRequest();
     oReq.addEventListener('load', this.onKanbanData);
     oReq.addEventListener('err', this.onKanbanData);
 
-    oReq.open('GET', this.props.url);
+    oReq.open('GET', apiUrl);
     oReq.send();
   }
 
   componentWillMount() {
-    this.loadDataFromKanban();
+    this.loadDataFromKanban(this.props.url + 'Q');
+    this.loadDataFromKanban(this.props.url + 'P');
+    this.loadDataFromKanban(this.props.url + 'D');
   }
 
   render() {
